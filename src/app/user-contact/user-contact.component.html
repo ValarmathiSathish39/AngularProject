@@ -1,0 +1,89 @@
+<div class="contact-form">
+    <form [formGroup]="userContactForm" (ngSubmit)="onFormSubmit()">
+        <mat-form-field class="form-element">
+            <mat-label>First Name</mat-label>
+            <input formControlName="firstName" matInput>
+        </mat-form-field>
+        <mat-error>
+            <span
+                *ngIf="!userContactForm?.get('firstName')?.value && userContactForm?.get('firstName')?.touched"></span>
+        </mat-error>
+
+        <mat-form-field class="form-element" class="form-element">
+            <mat-label>Lirst Name</mat-label>
+            <input formControlName="lastName" matInput>
+        </mat-form-field>
+        <mat-error>
+            <span *ngIf="!userContactForm?.get('lastName')?.value && userContactForm?.get('lastName')?.touched"></span>
+        </mat-error>
+
+        <mat-form-field class="form-element">
+            <mat-label>Date of Birth</mat-label>
+            <input matInput [matDatepicker]="picker" formControlName="dob">
+            <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+            <mat-datepicker #picker></mat-datepicker>
+        </mat-form-field>
+        <mat-error>
+            <span *ngIf="!userContactForm?.get('dob')?.value && userContactForm?.get('dob')?.touched"></span>
+        </mat-error>
+
+        <mat-form-field class="form-element">
+            <mat-label>Email</mat-label>
+            <input formControlName="email" matInput>
+        </mat-form-field>
+        <mat-error>
+            <span *ngIf="!userContactForm?.get('email')?.value && userContactForm?.get('email')?.touched"></span>
+        </mat-error>
+
+        <span>Gender</span>&nbsp;
+
+        <mat-radio-group formControlName="gender">
+            <mat-radio-button value="male">Male</mat-radio-button>&nbsp;&nbsp;
+            <mat-radio-button value="female">Female</mat-radio-button>&nbsp;&nbsp;
+        </mat-radio-group>
+        <mat-error>
+            <span *ngIf="!userContactForm?.get('gender')?.value && userContactForm?.get('gender')?.touched"></span>
+        </mat-error>
+        <div formGroupName="address">
+            <mat-form-field class="form-element">
+                <mat-label>AddressLine</mat-label>
+                <input formControlName="addressLine" matInput>
+            </mat-form-field>
+            <mat-error>
+                <span
+                    *ngIf="!userContactForm?.get('addressLine')?.value && userContactForm?.get('addressLine')?.touched"></span>
+            </mat-error>
+
+            <mat-form-field class="form-element">
+                <mat-label>City</mat-label>
+                <input formControlName="city" matInput>
+            </mat-form-field>
+
+            <mat-form-field class="form-element">
+                <mat-label>State</mat-label>
+                <input formControlName="state" matInput>
+            </mat-form-field>
+
+            <mat-form-field class="form-element">
+                <mat-label>Country</mat-label>
+                <input formControlName="country" matInput>
+            </mat-form-field>
+
+            <mat-form-field class="form-element">
+                <mat-label>Pincode</mat-label>
+                <input formControlName="pincode" matInput minLength="5" maxLength="6">
+            </mat-form-field>
+            <mat-error>
+                <span
+                    *ngIf="!userContactForm?.get('pincode')?.value && userContactForm?.get('pincode')?.touched"></span>
+            </mat-error>
+        </div>
+
+
+        <button type="submit" mat-raised-button color="accent" matTooltip="Submit"
+            [disabled]="!userContactForm.valid">Submit</button>&nbsp;&nbsp;&nbsp;&nbsp;
+        <button type="reset" mat-raised-button color="accent" matTooltip="Reset"
+            (click)="resetForm()">Reset</button>&nbsp;&nbsp;&nbsp;&nbsp;
+        <button mat-raised-button color="accent" (click)="closePopUp()">Back</button>
+    </form>
+</div>
